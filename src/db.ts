@@ -5,6 +5,7 @@ import { snakeCase } from 'typeorm/util/StringUtils'
 import Question from './questions/entity'
 import Quiz from './quizzes/entity'
 
+
 class CustomNamingStrategy extends DefaultNamingStrategy implements NamingStrategyInterface {
 
   tableName(targetName: string, userSpecifiedName: string): string {
