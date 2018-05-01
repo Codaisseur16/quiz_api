@@ -1,17 +1,17 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne } from 'typeorm'
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from 'typeorm'
 
 
 @Entity()
 export class Question extends BaseEntity {
 
   @PrimaryGeneratedColumn()
-  id?: number
+  id?: Number
 
   @Column('integer', {})
-  questionnumber: number
+  questionnumber: Number
 
   @Column('integer', {})
-  quizId: number
+  quizId: Number
 
   @Column('text', {})
   title: String
@@ -28,7 +28,7 @@ export class Question extends BaseEntity {
   @Column('text', {})
   option4: String
 
-  @Column('number', {})
-  correctAnswer: number
+  @Column('integer', {})
+  correctAnswer: Number
 
 }
