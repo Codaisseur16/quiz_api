@@ -1,21 +1,20 @@
 
-import {
-    Post, Param, HttpCode, Get,
-    Body, Patch, JsonController
-} from 'routing-controllers'
+import { Post, Param, HttpCode, Get, Body, Patch, JsonController } from 'routing-controllers'
 import { Question } from './entity'
 
 @JsonController()
 export default class QuestionController {
     @Post('/questions')
-    @HttpCode(201)
-    async createQuiz(
-        //@CurrentUser() user: User
+    // @HttpCode(201)
+   async createQuiz(
+        @Body() question: Question
     ) {
-        const entity = await Question.create().save()
+        const entity = await question.save()
 
-        return entity
+        return { entity }
     }
+
+    //should line 9 be createQuestion? 
 
     @Patch('/questions/:id([0-9]+)')
     async updateGame(
