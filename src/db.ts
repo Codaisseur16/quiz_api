@@ -2,7 +2,7 @@ import { createConnection } from 'typeorm'
 import { DefaultNamingStrategy } from 'typeorm/naming-strategy/DefaultNamingStrategy'
 import { NamingStrategyInterface } from 'typeorm/naming-strategy/NamingStrategyInterface'
 import { snakeCase } from 'typeorm/util/StringUtils'
-import { Question }from './questions/entity'
+import { Question } from './questions/entity'
 import { Quiz } from './quizzes/entity'
 
 

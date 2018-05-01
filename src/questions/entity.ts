@@ -8,7 +8,7 @@ export class Question extends BaseEntity {
   id?: Number
 
   @Column('integer', {})
-  questionnumber: Number
+  questionNumber: Number
 
   @Column('integer', {})
   quizId: Number

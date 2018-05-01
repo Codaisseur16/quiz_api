@@ -1,7 +1,4 @@
-import {
-    Post, Param, HttpCode, Get,
-    Body, Patch, JsonController
-} from 'routing-controllers'
+import { Post, Param, HttpCode, Get, Body, Patch, JsonController } from 'routing-controllers'
 import { Quiz } from './entity'
 
 @JsonController()
