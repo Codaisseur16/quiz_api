@@ -1,35 +1,40 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne } from 'typeorm'
 
+import {
+    JsonController, Authorized, CurrentUser, Post, Param, BadRequestError, HttpCode, NotFoundError, ForbiddenError, Get,
+    Body, Patch
+} from 'routing-controllers'
+import Question from './entity'
 
-@Entity()
-export class Question extends BaseEntity {
+export default class QuestionController {
+    @Post('/questions')
+    @HttpCode(201)
+    async createQuiz(
+        //@CurrentUser() user: User
+    ) {
+        const entity = await Question.create().Save()
 
-  @PrimaryGeneratedColumn()
-  id?: number
+        return entity
+    }
 
-  @Column('integer', {})
-  questionnumber: number
+    @Patch('/games/:id([0-9]+)')
+    async updateGame(
+        @Param('id') questionId: number,
+        @Body() update//: GameUpdate
+    ) {
+        console.log('At line1 Patch')
 
-  @Column('integer', {})
-  quizId: number
+        let question = await Question.findOneById(questionId)
 
-  @Column('text', {})
-  title: String
+        console.log('At line2 Patch')
 
-  @Column('text', {})
-  option1: String
+        question = update
 
-  @Column('text', {})
-  option2: String
+        await question.save()
+    }
 
-  @Column('text', {})
-  option3: String
-
-  @Column('text', {})
-  option4: String
-
-  @Column('number', {})
-  correctAnswer: number
-
+    @Get('/games')
+    @HttpCode(201)
+    getQuizzes() {
+        return Question.find()
+    }
 }
-
