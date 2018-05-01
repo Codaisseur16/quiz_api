@@ -14,6 +14,8 @@ export default class QuestionController {
         return { entity }
     }
 
+    //should line 9 be createQuestion? 
+
     @Patch('/questions/:id([0-9]+)')
     async updateGame(
         @Param('id') questionId: number,

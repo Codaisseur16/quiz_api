@@ -6,12 +6,14 @@ export default class QuizController {
     @Post('/quizzes')
     @HttpCode(201)
     async createQuiz(
-        //@CurrentUser() user: User
+        @Body() quiz: Quiz
     ) {
-        const entity = await Quiz.create().save()
+        const entity = await quiz.save()
 
-        return entity
+        return { entity }
     }
+
+    //look at the questions controller @post to see what changes charize made to make this one work
 
     @Patch('/quizzes/:id([0-9]+)')
     async updateGame(
