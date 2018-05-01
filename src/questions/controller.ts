@@ -1,22 +1,23 @@
 
 import {
-    JsonController, Authorized, CurrentUser, Post, Param, BadRequestError, HttpCode, NotFoundError, ForbiddenError, Get,
-    Body, Patch
+    Post, Param, HttpCode, Get,
+    Body, Patch, JsonController
 } from 'routing-controllers'
-import Question from './entity'
+import { Question } from './entity'
 
+@JsonController()
 export default class QuestionController {
     @Post('/questions')
     @HttpCode(201)
     async createQuiz(
         //@CurrentUser() user: User
     ) {
-        const entity = await Question.create().Save()
+        const entity = await Question.create().save()
 
         return entity
     }
 
-    @Patch('/games/:id([0-9]+)')
+    @Patch('/questions/:id([0-9]+)')
     async updateGame(
         @Param('id') questionId: number,
         @Body() update//: GameUpdate
@@ -32,7 +33,7 @@ export default class QuestionController {
         await question.save()
     }
 
-    @Get('/games')
+    @Get('/questions')
     @HttpCode(201)
     getQuizzes() {
         return Question.find()
