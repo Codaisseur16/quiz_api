@@ -4,7 +4,7 @@ import setupDb from './db'
 import QuestionController from './questions/controller'
 import QuizController from './quizzes/controller'
 
-const port = process.env.PORT || 4008
+const port = process.env.PORT || 4001
 
 const app = createKoaServer({
   controllers: [
