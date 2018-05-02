@@ -6,7 +6,7 @@ import { Question } from './entity'
 export default class QuestionController {
     @Post('/questions')
     // @HttpCode(201)
-   async createQuiz(
+   async createQuestion(
         @Body() question: Question
     ) {
         const entity = await question.save()
@@ -14,10 +14,10 @@ export default class QuestionController {
         return { entity }
     }
 
-    //should line 9 be createQuestion? 
+    //should line 9 be createQuestion?????
 
     @Patch('/questions/:id([0-9]+)')
-    async updateGame(
+    async updateQuestion(
         @Param('id') questionId: number,
         @Body() update//: GameUpdate
     ) {
@@ -34,7 +34,7 @@ export default class QuestionController {
 
     @Get('/questions')
     @HttpCode(201)
-    getQuizzes() {
+    getQuestion() {
         return Question.find()
     }
 }
