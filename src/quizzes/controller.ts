@@ -16,7 +16,7 @@ export default class QuizController {
     //look at the questions controller @post to see what changes charize made to make this one work
 
     @Patch('/quizzes/:id([0-9]+)')
-    async updateGame(
+    async updateQuiz(
         @Param('id') quizId: Number,
         @Body() update//: GameUpdate
     ) {
