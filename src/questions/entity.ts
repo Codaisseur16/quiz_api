@@ -1,4 +1,4 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, Index, OneToMany, ManyToOne } from 'typeorm'
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from 'typeorm'
 
 
 @Entity()
@@ -7,28 +7,28 @@ export class Question extends BaseEntity {
   @PrimaryGeneratedColumn()
   id?: number
 
-  @Column('integer', {})
-  questionnumber: number
+  @Column('integer', {nullable: true})
+  questionNumber: Number
 
-  @Column('integer', {})
+  @Column('integer', {nullable: true})
   quizId: number
 
-  @Column('text', {})
-  title: String
+  @Column('text', {nullable: true})
+  title: string
 
-  @Column('text', {})
-  option1: String
+  @Column('text', {nullable: true})
+  option1: string
 
-  @Column('text', {})
-  option2: String
+  @Column('text', {nullable: true})
+  option2: string
 
-  @Column('text', {})
-  option3: String
+  @Column('text', {nullable: true})
+  option3: string
 
-  @Column('text', {})
-  option4: String
+  @Column('text', {nullable: true})
+  option4: string
 
-  @Column('number', {})
+  @Column('integer', {nullable: true})
   correctAnswer: number
 
 }

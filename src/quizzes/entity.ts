@@ -6,13 +6,13 @@ import { BaseEntity } from 'typeorm/repository/BaseEntity'
 export class Quiz extends BaseEntity {
 
     @PrimaryGeneratedColumn()
-    id?: number
+    id?: Number
 
     @Column('text', { nullable: false })
-    quizTitle: string
+    quizTitle: String
 
     @Column('integer', {default: 1, nullable: true})
-    userId: number
+    userId: Number
 
     // this is a relation, read more about them here:
     // http://typeorm.io/#/many-to-one-one-to-many-relations
