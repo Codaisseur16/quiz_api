@@ -7,6 +7,7 @@ import QuizController from './quizzes/controller'
 const port = process.env.PORT || 4001
 
 const app = createKoaServer({
+  cors: true,
   controllers: [
     QuestionController,
     QuizController
