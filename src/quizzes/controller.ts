@@ -13,15 +13,13 @@ export default class QuizController {
         return { entity }
     }
 
-    //look at the questions controller @post to see what changes charize made to make this one work
-
     @Patch('/quizzes/:id([0-9]+)')
     async updateQuiz(
         @Param('id') quizId: Number,
         @Body() update//: GameUpdate
     ) {
         console.log('At line1 Patch')
-
+        
         let quiz = await Quiz.findOneById(quizId)
 
         console.log('At line2 Patch')
