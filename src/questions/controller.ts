@@ -31,6 +31,7 @@ export default class QuestionController {
 
         await question.save()
     }
+//need to double check the question.save
 
     @Get('/questions')
     @HttpCode(201)
