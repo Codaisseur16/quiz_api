@@ -28,10 +28,11 @@ export default class QuestionController {
         console.log('At line2 Patch')
 
         question = update
-
-        await question.save()
+        if(question)
+        return question.save()
+        else
+        return 'error'
     }
-//need to double check the question.save
 
     @Get('/questions')
     @HttpCode(201)

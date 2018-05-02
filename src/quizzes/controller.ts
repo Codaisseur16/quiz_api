@@ -24,9 +24,12 @@ export default class QuizController {
 
         console.log('At line2 Patch')
 
-        quiz = update
-
-        await quiz.save()
+        quiz = await update
+        if(quiz){
+            return quiz.save()
+        } else {
+            return "error"
+        }
     }
 
     @Get('/quizzes')
