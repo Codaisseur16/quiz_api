@@ -1,6 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 import { BaseEntity } from 'typeorm/repository/BaseEntity'
-import { Question } from '../questions/entity'
 
 @Entity()
 export class Quiz extends BaseEntity {
@@ -16,7 +15,7 @@ export class Quiz extends BaseEntity {
 
     // this is a relation, read more about them here:
     // http://typeorm.io/#/many-to-one-one-to-many-relations
-    @OneToMany(_ => Question, question => question.quiz, { eager: true })
-    questions: Question[]
+    // @OneToMany(_ => Question, question => question.quiz, { eager: true })
+    // questions: Question[]
 }
 

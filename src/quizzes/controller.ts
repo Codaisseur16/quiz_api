@@ -38,6 +38,8 @@ export default class QuizController {
         return Quiz.find()
     }
 
+    //this isn't working! - 
+    //error:  { error: update or delete on table "quizs" violates foreign key constraint "fk_514c9e4de365c782f76a64a4827" on table "questions"
     @Delete('/quizzes/:id')
     async deleteQuiz(
         @Param('id') id: number

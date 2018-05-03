@@ -1,5 +1,4 @@
-import { BaseEntity, PrimaryGeneratedColumn, Column, Entity, ManyToOne } from 'typeorm'
-import { Quiz } from '../quizzes/entity'
+import { BaseEntity, PrimaryGeneratedColumn, Column, Entity } from 'typeorm'
 
 
 @Entity()
@@ -8,10 +7,10 @@ export class Question extends BaseEntity {
   @PrimaryGeneratedColumn()
   id?: number
 
-  @Column('integer', { nullable: true })
-  questionNumber: number
-
-  @ManyToOne(_ => Quiz, quiz => quiz.questions)
+  // @Column('integer', { nullable: true })
+  // questionNumber: number
+  
+  @Column('text', { nullable: false })
   quiz: number
 
   @Column('text', { nullable: true })
