@@ -6,7 +6,6 @@ import { Question } from './entity'
 @JsonController()
 export default class QuestionController {
 
-//we need to send back the questionId when they create a question! check with Emeline
     @Post('/questions')
     // @HttpCode(201)
    async createQuestion(
