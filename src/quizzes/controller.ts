@@ -1,4 +1,4 @@
-import { Post, Param, HttpCode, Get, Body, Patch, JsonController } from 'routing-controllers'
+import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete, NotFoundError } from 'routing-controllers'
 import { Quiz } from './entity'
 
 @JsonController()
@@ -36,5 +36,19 @@ export default class QuizController {
     @HttpCode(201)
     getQuizzes(){
         return Quiz.find()
+    }
+
+    //this isn't working! - 
+    //error:  { error: update or delete on table "quizs" violates foreign key constraint "fk_514c9e4de365c782f76a64a4827" on table "questions"
+    @Delete('/quizzes/:id')
+    async deleteQuiz(
+        @Param('id') id: number
+    ) {
+        const quiz = await Quiz.findOneById(id)
+
+        if (!quiz) throw new NotFoundError('Quiz doesn\'t exist')
+
+        if (quiz) Quiz.removeById(id)
+        return 'successfully deleted'
     }
 }

@@ -1,11 +1,12 @@
 
-import { Post, Param, HttpCode, Get, Body, Patch, JsonController } from 'routing-controllers'
+import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete, NotFoundError } from 'routing-controllers'
 import { Question } from './entity'
 
-// might not need to get all questions and get all questions by id
 
 @JsonController()
 export default class QuestionController {
+
+//we need to send back the questionId when they create a question! check with Emeline
     @Post('/questions')
     // @HttpCode(201)
    async createQuestion(
@@ -49,5 +50,17 @@ export default class QuestionController {
         let quizQuestion = Question.find( {quiz: quizRequestId} ) 
 
         return quizQuestion 
+    }
+
+    @Delete('/questions/:id')
+    async deleteQuestion(
+        @Param('id') id: number
+    ) {
+        const question = await Question.findOneById(id)
+
+        if (!question) throw new NotFoundError('Question doesn\'t exist')
+
+        if (question) Question.removeById(id)
+        return 'successfully deleted'
     }
 }
