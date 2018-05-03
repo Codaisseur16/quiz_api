@@ -1,5 +1,5 @@
 
-import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete } from 'routing-controllers'
+import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete, NotFoundError } from 'routing-controllers'
 import { Question } from './entity'
 
 
@@ -58,6 +58,9 @@ export default class QuestionController {
     ) {
         const question = await Question.findOneById(id)
 
-        return question
+        if (!question) throw new NotFoundError('Question doesn\'t exist')
+
+        if (question) Question.removeById(id)
+        return 'successfully deleted'
     }
 }

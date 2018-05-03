@@ -1,4 +1,4 @@
-import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete } from 'routing-controllers'
+import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete, NotFoundError } from 'routing-controllers'
 import { Quiz } from './entity'
 
 @JsonController()
@@ -44,6 +44,9 @@ export default class QuizController {
     ) {
         const quiz = await Quiz.findOneById(id)
 
-        return quiz
+        if (!quiz) throw new NotFoundError('Quiz doesn\'t exist')
+
+        if (quiz) Quiz.removeById(id)
+        return 'successfully deleted'
     }
 }
