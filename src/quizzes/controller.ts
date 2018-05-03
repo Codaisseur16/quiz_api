@@ -1,4 +1,4 @@
-import { Post, Param, HttpCode, Get, Body, Patch, JsonController } from 'routing-controllers'
+import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete } from 'routing-controllers'
 import { Quiz } from './entity'
 
 @JsonController()
@@ -36,5 +36,14 @@ export default class QuizController {
     @HttpCode(201)
     getQuizzes(){
         return Quiz.find()
+    }
+
+    @Delete('/quizzes/:id')
+    async deleteQuiz(
+        @Param('id') id: number
+    ) {
+        const quiz = await Quiz.findOneById(id)
+
+        return quiz
     }
 }
