@@ -44,6 +44,20 @@ export default class QuizController {
         return Quiz.find()
     }
 
+    @Get('/quizzes/:id([0-9]+)')
+    @HttpCode(201)
+    async getQuizById(
+        @Param('id') quizId: number
+    ) {
+        const quizById = await Quiz.findOneById(quizId)
+
+        if (!quizById) throw new NotFoundError('Quiz doesn\'t exist')
+        
+        if (quizById) {
+        return {quizById}
+        }
+    }
+
 
     @Delete('/quizzes/:id')
     async deleteQuiz(
