@@ -1,16 +1,22 @@
 import { Post, Param, HttpCode, Get, Body, Patch, JsonController, Delete, NotFoundError } from 'routing-controllers'
 import { Quiz } from './entity'
+import * as request from 'superagent'
 
 @JsonController()
 export default class QuizController {
+
     @Post('/quizzes')
     @HttpCode(201)
     async createQuiz(
         @Body() quiz: Quiz
     ) {
-        const entity = await quiz.save()
+      const entity = await quiz.save()
 
-        return { entity }
+      return await request
+      .post('http://webhooks:4004/postquizwh/')
+      .send({url:"somethingElse", qid: entity.id} )
+      .then(quiz2=> {
+        return quiz2.text})
     }
 
     @Patch('/quizzes/:id([0-9]+)')
@@ -19,7 +25,7 @@ export default class QuizController {
         @Body() update//: GameUpdate
     ) {
         console.log('At line1 Patch')
-        
+
         let quiz = await Quiz.findOneById(quizId)
 
         console.log('At line2 Patch')
@@ -47,11 +53,12 @@ export default class QuizController {
 
         if (!quizById) throw new NotFoundError('Quiz doesn\'t exist')
         
-        if (quizById) quizById
-        return quizById
+        if (quizById) {
+        return {quizById}
+        }
     }
 
-    
+
     @Delete('/quizzes/:id')
     async deleteQuiz(
         @Param('id') id: number
